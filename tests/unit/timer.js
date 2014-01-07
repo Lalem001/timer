@@ -46,13 +46,13 @@ $(document).ready(function () {
         timer.on('completed', function () {
             ok(
                 Math.abs(timer.elapsed() - (min + extend)) <= tolerance,
-                ['Completed at ', (min + extend), '±', tolerance, 'ms'].join('')
+                ['Completed at ', timer.elapsed(), 'ms (', (min + extend), '±', tolerance, 'ms)'].join('')
             );
         });
         timer.on('timedout', function () {
             ok(
                 Math.abs(timer.elapsed() - max) <= tolerance,
-                ['Timedout at ', max, '±', tolerance, 'ms'].join('')
+                ['Timedout at ', timer.elapsed(), 'ms (',max, '±', tolerance, 'ms)'].join('')
             );
             start();
         });
