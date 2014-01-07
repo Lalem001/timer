@@ -25,29 +25,15 @@ $(document).ready(function () {
         equal(timer._isPaused, false, 'New timer indicates it is not paused');
     });
 
-    asyncTest('events', 4, function () {
-        var eventCount = 0,
-            Timer = window.Timer,
+    asyncTest('events', 2, function () {
+        var Timer = window.Timer,
             timer = new Timer(1, 5);
         timer.on('completed', function () {
             ok(true, '"completed" event fired');
-            eventCount += 1;
         });
         timer.on('timedout', function () {
             ok(true, '"timedout" event fired');
-            eventCount += 1;
-        });
-        timer.on('all', function (e) {
-            var event = 'all:' + e;
-            if (event === 'all:completed' || event === 'all:timedout') {
-                ok(true, '"' + event + '" event fired');
-            } else {
-                ok(false, 'unexpected event "' + event + '"');
-            }
-            eventCount += 1;
-            if (eventCount >= 4) {
-                start();
-            }
+            start();
         });
         timer.start();
     });
