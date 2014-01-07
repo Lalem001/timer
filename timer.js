@@ -11,9 +11,6 @@
             window.Timer = factory(window._, window.Backbone);
         }
     }(function (_, Backbone) {
-        /** Safe `undefined` reference */
-        var undefined;
-
         'use strict';
         var Timer;
 
