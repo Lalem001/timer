@@ -1,5 +1,6 @@
 # Project paths
 tests/vendor
+report
 
 # List below is based on files from:
 # https://github.com/github/gitignore
