@@ -1,0 +1,61 @@
+# Project paths
+tests/vendor
+
+# List below is based on files from:
+# https://github.com/github/gitignore
+
+# Extensions to ignore
+*.diff
+*.err
+*.orig
+*.log
+
+# Archive extensions
+*.7z
+*.jar
+*.rar
+*.zip
+*.gz
+*.bzip
+*.bz2
+*.xz
+*.lzma
+
+# Packing-only extensions
+*.iso
+*.tar
+
+# Package management extensions
+*.dmg
+*.xpi
+*.gem
+*.egg
+*.deb
+*.rpm
+
+# Node.js
+node_modules
+
+#IntelliJ Editors (WebStorm, PyCharm, etc.)
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Windows OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Mac OS X
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+# Linux
+*~
