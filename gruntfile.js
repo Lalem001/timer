@@ -4,27 +4,29 @@ module.exports = function(grunt) {
     require('matchdep').filterAll('grunt-*').forEach(grunt.loadNpmTasks);
 
     grunt.initConfig({
-        meta: {
-            banner:
-                '/**\n' +
-                ' * <%= meta.pkg.name %> v<%= meta.pkg.version %>\n' +
-                ' * Copyright (c) 2013, <%= grunt.template.today("yyyy") %> <%= meta.pkg.author %>\n' +
-                ' */\n',
-            pkg: grunt.file.readJSON('package.json'),
+        jshint: {
+            options: {
+                jshintrc: '.jshintrc'
+            },
+            timer: ['timer.js']
         },
-
-        /**********************
-         * Task Configuration *
-         **********************/
-
-        bower: {
-            install: {
-                options: {
-                    copy: false
+        qunit: {
+            options: {
+                coverage: {
+                    src: ['timer.js'],
+                    instrumentedFiles: 'report/temp/',
+                    htmlReport: 'report/'
                 }
+            },
+            all: ['tests/index.html']
+        },
+        uglify: {
+            timer: {
+                src: ['timer.js'],
+                dest: 'timer.min.js'
             }
         }
     });
 
-    grunt.registerTask('default', []);
+    grunt.registerTask('default', ['jshint', 'qunit', 'uglify']);
 };
