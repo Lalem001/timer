@@ -1,5 +1,6 @@
 (
     function (factory) {
+        'use strict';
         if (typeof define === 'function' && define.amd) {
             // AMD. Register as an anonymous module.
             define(['underscore', 'backbone'], factory);
@@ -13,6 +14,7 @@
         /** Safe `undefined` reference */
         var undefined;
 
+        'use strict';
         var Timer;
 
         // Timer
