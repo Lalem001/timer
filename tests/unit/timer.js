@@ -3,7 +3,7 @@ $(document).ready(function () {
     module('Timer');
     test('basic ops', 14, function () {
         var Timer = window.Timer,
-            timer = new Timer(5000, 15000);
+            timer = new Timer(100, 200);
 
         equal(timer._isStarted, false, 'New timer indicates it is not started');
         equal(timer._isPaused, false, 'New timer indicates it is not paused');
@@ -28,7 +28,7 @@ $(document).ready(function () {
     asyncTest('events', 4, function () {
         var eventCount = 0,
             Timer = window.Timer,
-            timer = new Timer(5, 10);
+            timer = new Timer(1, 5);
         timer.on('completed', function () {
             ok(true, '"completed" event fired');
             eventCount += 1;
@@ -53,7 +53,7 @@ $(document).ready(function () {
     });
 
     asyncTest('extension', 4, function () {
-        var min = 50, max = 100, extend = 20,
+        var min = 100, max = 200, extend = 50,
             tolerance = 5,
             Timer = window.Timer,
             timer = new Timer(min, max);
