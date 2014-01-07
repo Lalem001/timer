@@ -118,7 +118,7 @@
                 if (!_.isFunction(callback) || !_.isNumber(milliseconds)) {
                     return undefined;
                 }
-                var exports = function () {},
+                var exports = {},
                     startTime = Date.now(),
                     stopTime,
                     updateTimeout,
