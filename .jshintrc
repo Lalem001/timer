@@ -20,5 +20,13 @@
     "indent"    : 4,
     "quotmark"  : true,
 
-    "browser"   : true
+    "browser"   : true,
+
+    "predef": {
+        "define": false,
+        "module": false,
+        "require": false,
+        "_": false,
+        "Backbone": false
+    }
 }
