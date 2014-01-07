@@ -36,10 +36,6 @@
             return this;
         };
 
-        _.extend(Timer, {
-            getNow: Date.now || function () { return +(new Date()); }
-        });
-
         _.extend(Timer.prototype, Backbone.Events, {
             start: function () {
                 if (this._isStarted) { return false; }
@@ -52,7 +48,7 @@
                     return that.emitTimeOut();
                 }, this._maxDuration);
                 this._isStarted = true;
-                this._startTime = Timer.getNow();
+                this._startTime = Date.now();
                 this._stopTime = undefined;
                 return true;
             },
@@ -62,20 +58,20 @@
                 this.timedOutTimer.clear();
                 this._isStarted = false;
                 this._isPaused = false;
-                this._stopTime = Timer.getNow();
+                this._stopTime = Date.now();
                 return true;
             },
             pause: function () {
                 if (!this._isStarted || this._isPaused) { return false; }
                 this._isPaused = true;
                 this.scheduledTimer.clear();
-                this._pausedTime = Timer.getNow();
+                this._pausedTime = Date.now();
                 return true;
             },
             resume: function () {
                 if (!this._isStarted || !this._isPaused) { return false; }
                 this._isPaused = false;
-                this._pausedDuration += Timer.getNow() - this._pausedTime;
+                this._pausedDuration += Date.now() - this._pausedTime;
                 this._pausedTime = undefined;
                 var that = this,
                     extension = this._scheduledDuration - this.scheduledTimer.elapsed();
@@ -123,7 +119,7 @@
                     return undefined;
                 }
                 var exports = function () {},
-                    startTime = Timer.getNow(),
+                    startTime = Date.now(),
                     stopTime,
                     updateTimeout,
                     updateFrequency = Math.min(Math.ceil(milliseconds / 10), 1000), // every x milliseconds
@@ -131,9 +127,9 @@
                     timeout;
                 updateTimeout = function () {
                     if (!cleared) {
-                        var nextInterval = Math.min(updateFrequency, milliseconds + startTime - Timer.getNow());
+                        var nextInterval = Math.min(updateFrequency, milliseconds + startTime - Date.now());
                         if (nextInterval <= 0) {
-                            stopTime = Timer.getNow();
+                            stopTime = Date.now();
                             callback.call(this);
                         } else {
                             timeout = setTimeout(updateTimeout, nextInterval);
@@ -142,11 +138,11 @@
                 };
                 updateTimeout();
                 exports.elapsed = function () {
-                    return stopTime ? stopTime - startTime : -startTime + Timer.getNow();
+                    return stopTime ? stopTime - startTime : -startTime + Date.now();
                 };
                 exports.clear = function () {
                     clearTimeout(timeout);
-                    stopTime = Timer.getNow();
+                    stopTime = Date.now();
                     cleared = true;
                     return true;
                 };
